@@ -4,16 +4,18 @@
 
 # Input args
 profile=$1 
-outDir=$2
-projectID=$3  # Assign projectID from the third argument
+input=$2
+outDir=$3
+projectID=$4  # Assign projectID from the third argument
 
-# housekeeping
-if [[ -z $outDir || -z $profile || -z $projectID ]]; then echo "All variables are required: profile outDir projectID"; exit; fi
+# housekeeping; add input condition in the if statement
+if [[ -z $outDir || -z $profile || -z $projectID || -z $input ]]; then echo "All variables are required: profile input outDir projectID"; exit; fi
 if [[ ! -d $outDir ]]; then mkdir -p $outDir; fi
 
 # run the workflow
 nextflow run main.nf \
 	-profile $profile \
+	--input $input \
 	--outdir $outDir \
  	--projectID $projectID \
 	-resume
