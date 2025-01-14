@@ -70,13 +70,54 @@ annoColors <- list(
 
 ################################################
 ################################################
-## Create a basic heatmap##
+## Create a basic heatmap                     ##
 ################################################
 ################################################
 
+# Generate the heatmap
+output_file = paste0("basic_heatmap_", outprefix, ".pdf")
+
+pheatmap(
+  mat                 = sampleData,
+  annotation_row      = geneFunctions,
+  annotation_col      = annoData,
+  annotation_colors   = annoColors,
+  clustering_distance_rows = "euclidean",
+  clustering_distance_cols = "euclidean",
+  clustering_method   = "ward.D",
+  show_rownames       = TRUE,
+  show_colnames       = TRUE,
+  filename            = output_file
+)
+
+cat("Heatmap generated and saved to:", output_file, "\n")
 
 ################################################
 ################################################
-## Create a basic heatmap##
+## Create a complex heatmap                   ##
 ################################################
 ################################################
+
+# Define the custom breaks and colors for the heatmap legend
+legend_breaks = c(min(sampleData), mean(sampleData), max(sampleData))
+legend_labels = c("low", "medium", "high")
+
+# Generate the heatmap
+output_file = paste0("complex_heatmap_", outprefix, ".pdf")
+
+pheatmap(
+  mat                 = sampleData,
+  annotation_row      = geneFunctions,
+  annotation_col      = annoData,
+  annotation_colors   = annoColors,
+  clustering_distance_rows = "euclidean",
+  clustering_distance_cols = "euclidean",
+  clustering_method   = "ward.D",
+  legend_breaks       = legend_breaks,
+  legend_labels       = legend_labels,
+  show_rownames       = FALSE,
+  show_colnames       = FALSE,
+  filename            = output_file
+)
+
+cat("Complex heatmap generated and saved to:", output_file, "\n")
