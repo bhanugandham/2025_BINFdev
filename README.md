@@ -23,8 +23,13 @@ nextflow run 2025_BINFdev/main.nf \
 
 Alternatively you can use the `run.sh` script
 ```
-bash run.sh <profiles> <outputdir> <projectID>
+bash run.sh <profiles> <input_samplesheet> <outputdir> <projectID>
 ```
+
+IMPORTANT NOTES: 
+1. You can test the run by substituting inpout samplesheet with "https://raw.githubusercontent.com/nf-core/test-datasets/viralrecon/samplesheet/samplesheet_test_illumina_amplicon.csv"
+2. In case you come across a multiqc command not found error, it is likely due to missing package. Install with `pip install multiqc`
+
 
 It is recommended to utilize the `test` profile with your computational environment, such as `test,singularity` or `test,docker`.
 
